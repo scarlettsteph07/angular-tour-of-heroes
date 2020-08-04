@@ -12,6 +12,11 @@ import { HEROES } from './mock-heroes';
 })
 export class HeroService {
   private heroesUrl = 'api/heroes';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
   constructor(
     private http: HttpClient,
@@ -34,6 +39,13 @@ export class HeroService {
     return this.http.get<Hero>(heroUrl).pipe(
       tap(() => this.log(`fetched hero id: ${id}`)),
       catchError(this.handleError<Hero>(`getHero id: ${id}`))
+    );
+  };
+
+  updateHero = (hero: Hero): Observable<Hero> => {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(() => this.log(`Updated hero id: ${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
   };
 
