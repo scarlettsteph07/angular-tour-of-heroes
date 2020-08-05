@@ -29,6 +29,7 @@
       "kebab-case"
     ],
     "eofline": true,
+    "ordered-imports": true,
     "import-blacklist": [
       true,
       "rxjs/Rx"
@@ -80,11 +81,11 @@
       true,
       "single"
     ],
-    "semicolon": {
-      "options": [
-        "always"
-      ]
-    },
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods"
+    ],
     "space-before-function-paren": {
       "options": {
         "anonymous": "never",
