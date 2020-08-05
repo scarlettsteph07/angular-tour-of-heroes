@@ -6,7 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -39,7 +41,9 @@ import { MessagesComponent } from './messages/messages.component';
     }),
 
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule,
   ],
