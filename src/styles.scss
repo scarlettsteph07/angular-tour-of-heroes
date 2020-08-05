@@ -7,6 +7,10 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
+$secondary-typography: mat-typography-config(
+  $font-family: '"Encode Sans Condensed", "Helvetica Neue", sans-serif'
+);
+
 @include mat-core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -32,8 +36,7 @@ $angular-tour-of-heroes-theme: mat-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($angular-tour-of-heroes-theme);
+@include mat-toolbar-typography($secondary-typography);
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
