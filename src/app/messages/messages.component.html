@@ -1,12 +1,16 @@
 <div *ngIf="messageService.messages.length">
   <h2>Messages</h2>
-  <button
+  <button mat-button
     class='clear'
     (click)="messageService.clear()"
+    color="primary"
   >
-    clear
+    Clear
   </button>
-  <div *ngFor="let message of messageService.messages">
-    {{ message }}
-  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let message of messageService.messages; index as i">
+      {{ message }}
+      <mat-divider *ngIf="i !== messageService.messages.length - 1 "></mat-divider>
+    </mat-list-item>
+  </mat-list>
 </div>
