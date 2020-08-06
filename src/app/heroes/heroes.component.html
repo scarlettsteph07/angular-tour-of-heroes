@@ -1,16 +1,39 @@
 <div class="heroes">
   <h2>My Heroes</h2>
 
-  <div>
-    <label>Hero name:
-      <input #heroName />
-    </label>
-    <button (click)="add(heroName.value); heroName.value=''">
-      add
+  <form autocomplete="off" class="heroes__form">
+    <mat-form-field class="heroes__form__input" >
+      <mat-label>Hero name</mat-label>
+      <input
+        matInput
+        #heroName
+        type="text"
+      />
+      <button
+        aria-label="Clear"
+        class="heroes__form__clear-btn"
+        (click)="heroName.value=''"
+        [disabled]="heroName.value === ''"
+        mat-button
+        mat-icon-button
+        matSuffix
+      >
+        <mat-icon *ngIf="heroName.value">close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      class="heroes__form__submit-btn"
+      (click)="add(heroName.value); heroName.value=''"
+      color="primary"
+      [disabled]="heroName.value === ''"
+      mat-button
+    >
+      Add
     </button>
-  </div>
+  </form>
 
   <mat-list class="heroes__list">
+    <mat-spinner class="heroes__list__spinner" *ngIf="!heroes"></mat-spinner>
     <mat-list-item
       *ngFor="let hero of heroes"
       class="heroes__list__item"
@@ -19,13 +42,13 @@
         <span class="heroes__list__item__badge">{{ hero.id }}</span> {{ hero.name}}
       </a>
       <button
-        class="heroes__list__item__delete"
         (click)="delete(hero)"
         color="primary"
         mat-button
+        mat-icon-button
         title="Delete hero"
       >
-        x
+        <mat-icon>close</mat-icon>
       </button>
     </mat-list-item>
   </mat-list>
