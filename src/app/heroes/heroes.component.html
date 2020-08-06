@@ -10,8 +10,8 @@
     </button>
   </div>
 
-  <ul class="heroes__list">
-    <li
+  <mat-list class="heroes__list">
+    <mat-list-item
       *ngFor="let hero of heroes"
       class="heroes__list__item"
     >
@@ -20,11 +20,13 @@
       </a>
       <button
         class="heroes__list__item__delete"
-        title="Delete hero"
         (click)="delete(hero)"
+        color="accent"
+        mat-button
+        title="Delete hero"
       >
         x
       </button>
-    </li>
-  </ul>
+    </mat-list-item>
+  </mat-list>
 </div>
