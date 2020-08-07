@@ -17,9 +17,10 @@ describe('HeroDetailComponent', () => {
 
   beforeEach(async(() => {
     const activatedRouteMock = {
+      params: of({ id: '1234' }),
       snapshot: {
         paramMap: {
-          get: () => 1234,
+          get: () => '1234',
         },
       },
     };
