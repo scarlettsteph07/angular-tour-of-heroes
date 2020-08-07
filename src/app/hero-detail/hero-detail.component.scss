@@ -39,6 +39,11 @@ button {
   background-color: #eee;
 }
 
+.hero-details__form__clear-btn:disabled:hover {
+  background-color: transparent !important;
+  cursor: text;
+}
+
 * {
   font-size: 14px;
 }
