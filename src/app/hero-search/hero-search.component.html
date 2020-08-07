@@ -1,5 +1,4 @@
 <section class="hero-search">
-  <h2 class="hero-search__title">Hero Search</h2>
   <form autocomplete="off" class="hero-search__form">
     <mat-form-field class="hero-search__form__input" >
       <mat-label class="hero-search__label" for="searchBox">
@@ -15,7 +14,7 @@
       />
       <button
         aria-label="Clear"
-        class="hero-search__form__clear-btn"
+        class="hero-search__form__icon-btn"
         (click)="searchBox.value =''"
         [disabled]="searchBox.value === ''"
         mat-button
@@ -38,6 +37,8 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <mat-spinner *ngIf="isLoading" class="hero-search__spinner"></mat-spinner>
+    <div *ngIf="isLoading" class="hero-search__spinner">
+      <mat-spinner></mat-spinner>
+    </div>
   </form>
 </section>
