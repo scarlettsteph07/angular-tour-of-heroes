@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -44,6 +45,7 @@ import { MessagesComponent } from './messages/messages.component';
       dataEncapsulation: false,
     }),
 
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
