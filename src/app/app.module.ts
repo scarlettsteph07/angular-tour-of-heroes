@@ -28,11 +28,11 @@ import { MessagesComponent } from './messages/messages.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessagesComponent,
     DashboardComponent,
+    HeroDetailComponent,
     HeroSearchComponent,
+    HeroesComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,

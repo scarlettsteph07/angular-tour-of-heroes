@@ -11,6 +11,7 @@ h2, h3 {
 
 body {
   margin: 0em;
+  height: 95vh;
 }
 
 body, input[type="text"], button {
@@ -20,10 +21,6 @@ body, input[type="text"], button {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-button {
-  background-color: #eee !important;
 }
 
 button:hover {

@@ -1,7 +1,7 @@
-<div *ngIf="messageService.messages.length">
+<section class="messages" *ngIf="messageService.messages.length">
   <h2>Messages</h2>
   <button mat-button
-    class='clear'
+    class='messages__clear-btn'
     (click)="messageService.clear()"
     color="primary"
   >
@@ -13,4 +13,4 @@
       <mat-divider *ngIf="i !== messageService.messages.length - 1 "></mat-divider>
     </mat-list-item>
   </mat-list>
-</div>
+</section>
