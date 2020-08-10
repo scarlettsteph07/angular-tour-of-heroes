@@ -10,11 +10,12 @@ h2 {
   padding-top: 0;
 }
 
+.app__toolbar__fill-spacer {
+  flex: 1 1 auto;
+}
+
 .app__search-box {
   font-size: 12px;
-  position: absolute;
-  top: 5px;
-  right: 40px;
   z-index: 2;
 }
 
