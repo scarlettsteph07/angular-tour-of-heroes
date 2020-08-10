@@ -40,8 +40,14 @@ h2 {
 
 .app__content {
   padding: 20px 40px;
+  display: flex;
+  flex-flow: column;
 }
 
-.app__content__router-outlet {
-  height: 50vh;
+.app__content__fill-spacer {
+  flex: 1 1 auto;
+}
+
+.app__content__messages {
+  margin-bottom: 50px;
 }
