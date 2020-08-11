@@ -11,6 +11,9 @@ import {
   deleteHero,
   deleteHeroFailure,
   deleteHeroSuccess,
+  editHero,
+  editHeroFailure,
+  editHeroSuccess,
   getHeroById,
   getHeroByIdFailure,
   getHeroByIdSuccess,
@@ -72,6 +75,19 @@ export class HeroEffects {
         this.heroService.getHero(id).pipe(
           map((hero) => getHeroByIdSuccess({ hero })),
           catchError((error) => of(getHeroByIdFailure({ error })))
+        )
+      )
+    )
+  );
+
+  editHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editHero),
+      pluck('hero'),
+      mergeMap((hero) =>
+        this.heroService.updateHero(hero).pipe(
+          map(() => editHeroSuccess({ hero })),
+          catchError((error) => of(editHeroFailure({ error })))
         )
       )
     )

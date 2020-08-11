@@ -5,9 +5,8 @@ import { Store } from '@ngrx/store';
 import { pluck } from 'rxjs/operators';
 
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
 import { State } from '../store';
-import { getHeroById } from '../store/actions/hero.actions';
+import { editHero, getHeroById } from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-hero-detail',
@@ -19,7 +18,6 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
     private location: Location,
     private store: Store<State>
   ) {}
@@ -44,8 +42,6 @@ export class HeroDetailComponent implements OnInit {
 
   save(name: string): void {
     this.hero = { ...this.hero, name };
-    this.heroService
-      .updateHero(this.hero)
-      .subscribe(() => this.goBack());
+    this.store.dispatch(editHero({ hero: this.hero }));
   }
 }

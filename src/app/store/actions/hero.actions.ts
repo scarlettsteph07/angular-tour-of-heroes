@@ -44,6 +44,21 @@ export const deleteHeroFailure = createAction(
   props<{ error: any }>()
 );
 
+export const editHero = createAction(
+  '[Hero] Edit Hero',
+  props<{ hero: Hero }>()
+);
+
+export const editHeroSuccess = createAction(
+  '[Hero] Edit Hero Success',
+  props<{ hero: Hero }>()
+);
+
+export const editHeroFailure = createAction(
+  '[Hero] Edit Hero Failure',
+  props<{ error: any }>()
+);
+
 export const getHeroById = createAction(
   '[Hero] Get Hero By Id',
   props<{ id: number }>()

@@ -4,16 +4,15 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
-import { heroes } from 'src/test/heroes-response.data';
-import { HeroService } from '../hero.service';
+import { Hero } from '../hero';
 import { HeroDetailComponent } from './hero-detail.component';
 
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
   let fixture: ComponentFixture<HeroDetailComponent>;
-  let heroService: any;
 
   beforeEach(async(() => {
     const activatedRouteMock = {
@@ -24,15 +23,19 @@ describe('HeroDetailComponent', () => {
         },
       },
     };
-    const heroServiceSpy = jasmine.createSpyObj('heroServiceSpy', [
-      'getHero',
-      'updateHero',
-    ]);
+    const initialState = {
+      heroes: {
+        hero: {} as Hero,
+        heroes: [],
+        error: null,
+        loading: false,
+      },
+    };
     TestBed.configureTestingModule({
       declarations: [HeroDetailComponent],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: HeroService, useValue: heroServiceSpy },
+        provideMockStore({ initialState }),
       ],
     }).compileComponents();
   }));
@@ -40,8 +43,6 @@ describe('HeroDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeroDetailComponent);
     component = fixture.componentInstance;
-    heroService = fixture.debugElement.injector.get(HeroService);
-    heroService.getHero.and.returnValue(of(heroes));
     fixture.detectChanges();
   });
 

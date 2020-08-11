@@ -6,6 +6,9 @@ import {
   deleteHero,
   deleteHeroFailure,
   deleteHeroSuccess,
+  editHero,
+  editHeroFailure,
+  editHeroSuccess,
   getHeroById,
   getHeroByIdFailure,
   getHeroByIdSuccess,
@@ -74,6 +77,19 @@ export const heroReducer = createReducer(
   on(deleteHeroFailure, (state, { error }) => ({
     ...state,
     error,
+    loading: false,
+  })),
+  on(editHero, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(editHeroSuccess, (state, { hero }) => ({
+    ...state,
+    hero,
+    loading: false,
+  })),
+  on(editHeroFailure, (state, { error }) => ({
+    ...state,
     loading: false,
   })),
   on(getHeroById, (state) => ({
