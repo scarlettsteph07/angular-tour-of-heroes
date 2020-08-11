@@ -1,6 +1,7 @@
 h1 {
   font-size: 1.2em;
   margin-bottom: 0;
+  color: white;
 }
 
 h2 {
@@ -9,26 +10,44 @@ h2 {
   padding-top: 0;
 }
 
-nav a {
+.app__toolbar__fill-spacer {
+  flex: 1 1 auto;
+}
+
+.app__search-box {
+  font-size: 12px;
+  z-index: 2;
+}
+
+.app__nav {
+  height: 100%;
+}
+
+.app__nav__drawer {
+  min-width: 200px;
+}
+
+.app__nav__link {
+  display: block;
+  text-align: left;
   padding: 5px 10px;
-  text-decoration: none;
-  margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 4px;
-  margin-right: 10px;
+  border-radius: 0px;
 }
 
-nav a:visited, a:link {
-  color: #334953;
+.app__nav__link:hover {
+  color: gray;
 }
 
-nav a:hover {
-  color: #039be5;
-  background-color: #cfd8dc;
+.app__content {
+  padding: 20px 40px;
+  display: flex;
+  flex-flow: column;
 }
 
-nav a.active {
-  color: #039be5;
+.app__content__fill-spacer {
+  flex: 1 1 auto;
 }
 
+.app__content__messages {
+  margin-bottom: 50px;
+}

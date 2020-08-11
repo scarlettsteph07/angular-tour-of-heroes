@@ -1,12 +1,23 @@
-<div *ngIf="messageService.messages.length">
-  <h2>Messages</h2>
-  <button
-    class='clear'
+<mat-expansion-panel class="messages">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Messages (
+        <span class="messages__count">{{ messageService.messages.length }}</span>
+      )
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <button mat-button
+    class='messages__clear-btn'
     (click)="messageService.clear()"
+    color="primary"
+    [disabled]="!messageService.messages.length"
   >
-    clear
+    Clear
   </button>
-  <div *ngFor="let message of messageService.messages">
-    {{ message }}
-  </div>
-</div>
+  <mat-list>
+    <mat-list-item *ngFor="let message of messageService.messages; index as i">
+      {{ message }}
+      <mat-divider *ngIf="i !== messageService.messages.length - 1 "></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-expansion-panel>

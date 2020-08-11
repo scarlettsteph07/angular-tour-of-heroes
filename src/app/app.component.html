@@ -1,7 +1,30 @@
-<h1>{{ title }}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<mat-toolbar class="app__toolbar" color="primary">
+  <button mat-button (click)="drawer.toggle()">
+    <mat-icon class="mat-18">menu</mat-icon>
+  </button>
+  <h1>{{ title }}</h1>
+  <span class="app__toolbar__fill-spacer"></span>
+  <app-hero-search class="app__search-box"></app-hero-search>
+</mat-toolbar>
+
+<mat-drawer-container autosize class="app__nav" color="primary">
+  <mat-drawer class="app__nav__drawer" color="primary" #drawer mode="over">
+    <a
+      class="app__nav__link"
+      (click)="drawer.toggle()"
+      mat-button
+      routerLink="/dashboard"
+    >Dashboard</a>
+    <a
+      class="app__nav__link"
+      (click)="drawer.toggle()"
+      mat-button
+      routerLink="/heroes"
+    >Heroes</a>
+  </mat-drawer>
+  <mat-drawer-content class="app__content">
+    <router-outlet></router-outlet>
+    <div class="app__content__fill-spacer"></div>
+    <app-messages class="app__content__messages"></app-messages>
+  </mat-drawer-content>
+</mat-drawer-container>

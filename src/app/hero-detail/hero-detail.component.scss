@@ -1,35 +1,49 @@
-label, .label {
-  display: inline-block;
+.hero-details {
+  height: 100%;
+}
+
+.hero-details__title {
+  text-transform: capitalize;
+}
+
+.hero-details__form {
+  font-size: 1.2em;
+}
+
+.hero-details__form__input {
+  margin-right: 10px;
+}
+
+.hero-details__form__clear-btn {
+  background-color: transparent;
+}
+
+.hero-details__form__submit-btn {
+  background-color: #eee;
+}
+
+.hero-details__spinner {
+  margin: auto;
+}
+
+.hero-details__label {
   width: 3em;
+  display: inline-block;
   margin: .5em 0;
   color: #607D8B;
   font-weight: bold;
   margin-right: 10px;
 }
 
-input {
-  height: 2em;
-  font-size: 1em;
-  padding-left: .4em;
-}
-
 button {
-  margin-top: 20px;
-  font-family: Arial;
   background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-button:hover {
-  background-color: #cfd8dc;
+.hero-details__form__clear-btn:disabled:hover {
+  background-color: transparent !important;
+  cursor: text;
 }
 
-button:disabled {
-  background-color: #eee;
-  color: #ccc;
-  cursor: auto;
+* {
+  font-size: 14px;
 }
-
