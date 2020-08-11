@@ -31,8 +31,8 @@
     </button>
   </form>
 
-  <mat-list class="heroes__list">
-    <mat-spinner class="heroes__list__spinner" *ngIf="!heroes"></mat-spinner>
+  <mat-spinner  *ngIf="loading" class="heroes__list__spinner"></mat-spinner>
+  <mat-list *ngIf="!loading" class="heroes__list">
     <mat-list-item
       *ngFor="let hero of heroes"
       class="heroes__list__item"

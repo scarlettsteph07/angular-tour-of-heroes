@@ -15,6 +15,7 @@ import { editHero, getHeroById } from '../store/actions/hero.actions';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
+  loading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +33,10 @@ export class HeroDetailComponent implements OnInit {
       this.store.dispatch(getHeroById({ id }));
       this.store
         .select(({ heroes }) => heroes)
-        .subscribe(({ hero }) => (this.hero = hero));
+        .subscribe(({ hero, loading }) => {
+          this.hero = hero;
+          this.loading = loading;
+        });
     });
   }
 

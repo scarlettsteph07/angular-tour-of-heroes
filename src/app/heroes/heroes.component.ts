@@ -19,6 +19,7 @@ import {
 export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   heroes: Hero[];
+  loading: boolean;
 
   constructor(
     private store: Store<State>,
@@ -33,7 +34,10 @@ export class HeroesComponent implements OnInit {
     this.store.dispatch(loadHeroes());
     this.store
       .select(({ heroes }) => heroes)
-      .subscribe(({ heroes }) => (this.heroes = heroes));
+      .subscribe(({ heroes, loading }) => {
+        this.heroes = heroes;
+        this.loading = loading;
+      });
   }
 
   add(name: string): void {

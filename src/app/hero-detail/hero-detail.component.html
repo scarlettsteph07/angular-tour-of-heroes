@@ -1,7 +1,7 @@
 <section class="hero-details">
   <h2 class="hero-details__title">Hero Details</h2>
-  <mat-spinner class="hero-details__spinner" *ngIf="!hero"></mat-spinner>
-  <div *ngIf="hero">
+  <mat-spinner class="hero-details__spinner" *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading">
     <h3 class="hero-details__name">{{ hero.name }}</h3>
     <div class="hero-details__id">
       <span class="hero-details__label">Id </span>{{ hero.id }}
