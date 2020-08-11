@@ -3,37 +3,33 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { provideMockStore } from '@ngrx/store/testing';
 
-import { heroes } from '../../test/heroes-response.data';
-import { HeroService } from '../hero.service';
+import { Hero } from '../hero';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let heroService: any;
+  const initialState = {
+    heroes: {
+      hero: {} as Hero,
+      heroes: [],
+      error: null,
+      loading: false,
+    },
+  };
 
   beforeEach(async(() => {
-    const heroServiceSpy = jasmine.createSpyObj('heroServiceSpy', [
-      'getHeroes',
-    ]);
     TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      providers: [
-        {
-          provide: HeroService,
-          useValue: heroServiceSpy,
-        },
-      ],
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
-    heroService = fixture.debugElement.injector.get(HeroService);
-    heroService.getHeroes.and.returnValue(of(heroes));
     fixture.detectChanges();
   });
 
