@@ -4,9 +4,12 @@ import { Store } from '@ngrx/store';
 
 import { Hero } from '../hero';
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
-import { HeroService } from '../hero.service';
 import { State } from '../store';
-import { addHero, loadHeroes } from '../store/actions/hero.actions';
+import {
+  addHero,
+  deleteHero,
+  loadHeroes,
+} from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -18,7 +21,6 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[];
 
   constructor(
-    private heroService: HeroService,
     private store: Store<State>,
     public dialog: MatDialog
   ) {}
@@ -43,8 +45,7 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(({ id }) => id !== hero.id);
-    this.heroService.deleteHero(hero).subscribe();
+    this.store.dispatch(deleteHero({ hero }));
   }
 
   openConfirmDialog(hero: Hero): void {

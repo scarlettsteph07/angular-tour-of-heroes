@@ -8,6 +8,9 @@ import {
   addHero,
   addHeroFailure,
   addHeroSuccess,
+  deleteHero,
+  deleteHeroFailure,
+  deleteHeroSuccess,
   loadHeroes,
   loadHeroesFailure,
   loadHeroesSuccess,
@@ -42,6 +45,19 @@ export class HeroEffects {
           catchError((error) => of(addHeroFailure({ error })))
         )
       )
+    )
+  );
+
+  deleteHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteHero),
+      pluck('hero'),
+      mergeMap((hero) => {
+        return this.heroService.deleteHero(hero).pipe(
+          map(() => deleteHeroSuccess({ hero })),
+          catchError((error) => of(deleteHeroFailure({ error })))
+        );
+      })
     )
   );
 }

@@ -3,6 +3,9 @@ import {
   addHero,
   addHeroFailure,
   addHeroSuccess,
+  deleteHero,
+  deleteHeroFailure,
+  deleteHeroSuccess,
   loadHeroes,
   loadHeroesFailure,
   loadHeroesSuccess,
@@ -52,6 +55,20 @@ export const heroReducer = createReducer(
     loading: false,
   })),
   on(addHeroFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false,
+  })),
+  on(deleteHero, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(deleteHeroSuccess, (state, { hero }) => ({
+    ...state,
+    heroes: state.heroes.filter(({ id }) => id !== hero.id),
+    loading: false,
+  })),
+  on(deleteHeroFailure, (state, { error }) => ({
     ...state,
     error,
     loading: false,

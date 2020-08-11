@@ -28,3 +28,18 @@ export const addHeroFailure = createAction(
   '[Hero] Add Hero Failure',
   props<{ error: any }>()
 );
+
+export const deleteHero = createAction(
+  '[Hero] Delete Hero',
+  props<{ hero: Hero }>()
+);
+
+export const deleteHeroSuccess = createAction(
+  '[Hero] Delete Hero Success',
+  props<{ hero: Hero }>()
+);
+
+export const deleteHeroFailure = createAction(
+  '[Hero] Delete Hero Failure',
+  props<{ error: any }>()
+);
