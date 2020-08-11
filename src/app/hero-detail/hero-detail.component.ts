@@ -1,10 +1,13 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { pluck } from 'rxjs/operators';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { State } from '../store';
+import { getHeroById } from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-hero-detail',
@@ -17,7 +20,8 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private store: Store<State>
   ) {}
 
   ngOnInit(): void {
@@ -27,9 +31,10 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     this.route.params.pipe(pluck('id')).subscribe((id) => {
       id = +id;
-      this.heroService
-        .getHero(id)
-        .subscribe((hero) => (this.hero = hero));
+      this.store.dispatch(getHeroById({ id }));
+      this.store
+        .select(({ heroes }) => heroes)
+        .subscribe(({ hero }) => (this.hero = hero));
     });
   }
 
