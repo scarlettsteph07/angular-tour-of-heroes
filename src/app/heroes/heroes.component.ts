@@ -6,7 +6,7 @@ import { Hero } from '../hero';
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
 import { HeroService } from '../hero.service';
 import { State } from '../store';
-import { loadHeroes } from '../store/actions/hero.actions';
+import { addHero, loadHeroes } from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -39,9 +39,7 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.heroService
-      .addHero({ name } as Hero)
-      .subscribe((hero) => this.heroes.push(hero));
+    this.store.dispatch(addHero({ hero: { name } as Hero }));
   }
 
   delete(hero: Hero): void {

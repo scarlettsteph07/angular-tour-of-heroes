@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, pluck } from 'rxjs/operators';
 
 import { HeroService } from 'src/app/hero.service';
 import {
+  addHero,
+  addHeroFailure,
+  addHeroSuccess,
   loadHeroes,
   loadHeroesFailure,
   loadHeroesSuccess,
@@ -24,6 +27,19 @@ export class HeroEffects {
         this.heroService.getHeroes().pipe(
           map((heroes) => loadHeroesSuccess({ heroes })),
           catchError((error) => of(loadHeroesFailure({ error })))
+        )
+      )
+    )
+  );
+
+  addHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addHero),
+      pluck('hero'),
+      mergeMap((hero) =>
+        this.heroService.addHero(hero).pipe(
+          map((heroRes) => addHeroSuccess({ hero: heroRes })),
+          catchError((error) => of(addHeroFailure({ error })))
         )
       )
     )

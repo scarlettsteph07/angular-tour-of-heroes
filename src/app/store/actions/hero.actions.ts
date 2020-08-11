@@ -13,3 +13,18 @@ export const loadHeroesFailure = createAction(
   '[Hero] Load Heroes Failure',
   props<{ error: any }>()
 );
+
+export const addHero = createAction(
+  '[Hero] Add Hero',
+  props<{ hero: Hero }>()
+);
+
+export const addHeroSuccess = createAction(
+  '[Hero] Add Hero Success',
+  props<{ hero: Hero }>()
+);
+
+export const addHeroFailure = createAction(
+  '[Hero] Add Hero Failure',
+  props<{ error: any }>()
+);
