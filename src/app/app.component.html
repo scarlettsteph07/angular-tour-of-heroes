@@ -3,6 +3,7 @@
     <mat-icon class="mat-18">menu</mat-icon>
   </button>
   <h1>{{ title }}</h1>
+  <span class="app__toolbar__fill-spacer"></span>
   <app-hero-search class="app__search-box"></app-hero-search>
 </mat-toolbar>
 
@@ -22,9 +23,8 @@
     >Heroes</a>
   </mat-drawer>
   <mat-drawer-content class="app__content">
-    <div class="app__content__router-outlet">
-      <router-outlet></router-outlet>
-    </div>
-    <app-messages></app-messages>
+    <router-outlet></router-outlet>
+    <div class="app__content__fill-spacer"></div>
+    <app-messages class="app__content__messages"></app-messages>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -10,8 +10,9 @@
 }
 
 .top-heroes a  {
-  width: 22%;
   height: 100%;
+  flex: 1;
+  margin: 10px;
 }
 
 .top-heroes__spinner {
