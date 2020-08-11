@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 import { Hero } from '../hero';
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
 import { HeroService } from '../hero.service';
+import { State } from '../store';
+import { loadHeroes } from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -16,6 +19,7 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     private heroService: HeroService,
+    private store: Store<State>,
     public dialog: MatDialog
   ) {}
 
@@ -24,9 +28,10 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService
-      .getHeroes()
-      .subscribe((heroes) => (this.heroes = heroes));
+    this.store.dispatch(loadHeroes());
+    this.store
+      .select(({ heroes }) => heroes)
+      .subscribe(({ heroes }) => (this.heroes = heroes));
   }
 
   add(name: string): void {
