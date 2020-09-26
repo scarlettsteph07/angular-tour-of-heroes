@@ -1,10 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { pluck } from 'rxjs/operators';
 
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { State } from '../store';
+import { editHero, getHeroById } from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-hero-detail',
@@ -13,11 +15,12 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
+  loading: boolean;
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private store: Store<State>
   ) {}
 
   ngOnInit(): void {
@@ -27,9 +30,13 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     this.route.params.pipe(pluck('id')).subscribe((id) => {
       id = +id;
-      this.heroService
-        .getHero(id)
-        .subscribe((hero) => (this.hero = hero));
+      this.store.dispatch(getHeroById({ id }));
+      this.store
+        .select(({ heroes }) => heroes)
+        .subscribe(({ hero, loading }) => {
+          this.hero = hero;
+          this.loading = loading;
+        });
     });
   }
 
@@ -39,8 +46,6 @@ export class HeroDetailComponent implements OnInit {
 
   save(name: string): void {
     this.hero = { ...this.hero, name };
-    this.heroService
-      .updateHero(this.hero)
-      .subscribe(() => this.goBack());
+    this.store.dispatch(editHero({ hero: this.hero }));
   }
 }

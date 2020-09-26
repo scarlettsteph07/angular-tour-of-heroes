@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 import { Hero } from '../hero';
 import { HeroDialogComponent } from '../hero-dialog/hero-dialog.component';
-import { HeroService } from '../hero.service';
+import { State } from '../store';
+import {
+  addHero,
+  deleteHero,
+  loadHeroes,
+} from '../store/actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -13,9 +19,10 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   heroes: Hero[];
+  loading: boolean;
 
   constructor(
-    private heroService: HeroService,
+    private store: Store<State>,
     public dialog: MatDialog
   ) {}
 
@@ -24,9 +31,13 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService
-      .getHeroes()
-      .subscribe((heroes) => (this.heroes = heroes));
+    this.store.dispatch(loadHeroes());
+    this.store
+      .select(({ heroes }) => heroes)
+      .subscribe(({ heroes, loading }) => {
+        this.heroes = heroes;
+        this.loading = loading;
+      });
   }
 
   add(name: string): void {
@@ -34,14 +45,11 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.heroService
-      .addHero({ name } as Hero)
-      .subscribe((hero) => this.heroes.push(hero));
+    this.store.dispatch(addHero({ hero: { name } as Hero }));
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(({ id }) => id !== hero.id);
-    this.heroService.deleteHero(hero).subscribe();
+    this.store.dispatch(deleteHero({ hero }));
   }
 
   openConfirmDialog(hero: Hero): void {
