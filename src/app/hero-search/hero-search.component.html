@@ -1,0 +1,42 @@
+<form autocomplete="off" class="hero-search__form">
+  <mat-form-field class="hero-search__form__input" >
+    <mat-label class="hero-search__label" for="searchBox">
+      Hero
+    </mat-label>
+    <input
+      id="searchBox"
+      #searchBox
+      [matAutocomplete]="auto"
+      matInput
+      type="text"
+      (input)="search(searchBox.value)"
+    />
+    <button
+      aria-label="Clear"
+      class="hero-search__form__icon-btn"
+      (click)="searchBox.value =''"
+      [disabled]="searchBox.value === ''"
+      mat-button
+      mat-icon-button
+      matSuffix
+    >
+      <mat-icon *ngIf="!searchBox.value">search</mat-icon>
+      <mat-icon *ngIf="searchBox.value">close</mat-icon>
+    </button>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      class="hero-search__autocomplete"
+    >
+      <mat-option
+        *ngFor="let hero of heroes$ | async"
+        [value]="hero.name"
+        routerLink="/heroes/{{hero.id}}"
+      >
+        {{hero.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div *ngIf="isLoading" class="hero-search__spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</form>

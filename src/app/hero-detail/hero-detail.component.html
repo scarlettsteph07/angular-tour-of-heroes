@@ -1,0 +1,49 @@
+<section class="hero-details">
+  <h2 class="hero-details__title">Hero Details</h2>
+  <mat-spinner class="hero-details__spinner" *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading">
+    <h3 class="hero-details__name">{{ hero.name }}</h3>
+    <div class="hero-details__id">
+      <span class="hero-details__label">Id </span>{{ hero.id }}
+    </div>
+    <form autocomplete="off" class="hero-details__form">
+      <label class="hero-details__label" for="heroName">Name</label>
+      <mat-form-field class="hero-details__form__input" >
+        <input
+          id="heroName"
+          #heroName
+          matInput
+          type="text"
+          [value]="hero.name"
+        />
+        <button
+          aria-label="Clear"
+          class="hero-details__form__clear-btn"
+          (click)="heroName.value =''"
+          [disabled]="heroName.value === ''"
+          mat-button
+          mat-icon-button
+          matSuffix
+        >
+          <mat-icon *ngIf="heroName.value">close</mat-icon>
+        </button>
+      </mat-form-field>
+      <button
+        class="hero-details__form__submit-btn"
+        (click)="save(heroName.value)"
+        color="primary"
+        [disabled]="heroName.value === ''"
+        mat-button
+      >
+        Save
+      </button>
+    </form>
+    <button
+      mat-button
+      (click)="goBack()"
+      color="primary"
+    >
+      Go back
+    </button>
+  </div>
+</section>

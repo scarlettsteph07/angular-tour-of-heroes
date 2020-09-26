@@ -1,0 +1,34 @@
+h1 {
+  color: #369;
+  font-size: 250%;
+  font-size: 300px;
+}
+
+h2, h3 {
+  color: #444;
+  font-weight: lighter;
+}
+
+body {
+  margin: 0em;
+  height: 95vh;
+}
+
+body, input[type="text"], button {
+  color: #202020;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: #cfd8dc !important;
+}
+
+button:disabled:hover {
+  background-color: #eee !important;
+  cursor: not-allowed;
+}
+

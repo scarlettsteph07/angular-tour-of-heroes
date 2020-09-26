@@ -1,0 +1,12 @@
+<section>
+  <h2>Top Heroes</h2>
+  <div class="top-heroes">
+    <mat-spinner  class="top-heroes__spinner" color="primary" *ngIf="heroes.length === 0"></mat-spinner>
+    <a *ngFor="let hero of heroes" routerLink="/heroes/{{ hero.id }}">
+      <mat-card class="top-heroes__hero">
+        <img class="top-heroes__hero__image" mat-card-avatar src="{{hero.avatar_url}}" />
+        <h3 class="top-heroes__hero__name">{{hero.name}}</h3>
+      </mat-card>
+    </a>
+  </div>
+</section>

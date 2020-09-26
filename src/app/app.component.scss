@@ -1,0 +1,53 @@
+h1 {
+  font-size: 1.2em;
+  margin-bottom: 0;
+  color: white;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.app__toolbar__fill-spacer {
+  flex: 1 1 auto;
+}
+
+.app__search-box {
+  font-size: 12px;
+  z-index: 2;
+}
+
+.app__nav {
+  height: 100%;
+}
+
+.app__nav__drawer {
+  min-width: 200px;
+}
+
+.app__nav__link {
+  display: block;
+  text-align: left;
+  padding: 5px 10px;
+  border-radius: 0px;
+}
+
+.app__nav__link:hover {
+  color: gray;
+}
+
+.app__content {
+  padding: 20px 40px;
+  display: flex;
+  flex-flow: column;
+}
+
+.app__content__fill-spacer {
+  flex: 1 1 auto;
+}
+
+.app__content__messages {
+  margin-bottom: 50px;
+}
